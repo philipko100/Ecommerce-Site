@@ -8,6 +8,7 @@ class TestCategories(TestCase):
     def setUp(self):
         self.data1 = Category.objects.create(name='django', slug='django')
 
+    # test __str__ self function of model
     def test_category_model_entry(self):
         data = self.data1
         self.assertTrue(isinstance(data, Category))
@@ -21,7 +22,7 @@ class TestProductsModel(TestCase):
         self.data1 = Product.objects.create(category_id=1, title='django test',
                                                 created_by_id=1, slug='django-test', price='20.00',
                                                 image='django')
-
+    # test __str__ self function of model
     def test_products_model_entry(self):
         data = self.data1
         self.assertTrue(isinstance(data, Product))
