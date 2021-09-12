@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 from django.urls import reverse
 from django.http import HttpRequest
 from store.models import Category, Product
-from store.views import all_products
+from store.views import product_all
 
 class TestViewResponse(TestCase):
     
@@ -50,17 +50,17 @@ class TestViewResponse(TestCase):
     # test getting the homepage html
     def test_homepage(self):
         request = HttpRequest()
-        response = all_products(request)
+        response = product_all(request)
         html = response.content.decode('utf8')
-        self.assertIn('<title>Home</title>', html)
+        self.assertIn("<title>Philip's Store</title>", html)
         self.assertTrue(html.startswith('\n<!DOCTYPE html>\n'))
         self.assertEqual(response.status_code, 200)
 
     # also test getting homepage html with Request Factory
     def test_view_function(self):
-        request = self.factory.get('/item/django-test')
-        response = all_products(request)
+        request = self.factory.get('/django-test')
+        response = product_all(request)
         html = response.content.decode('utf8')
-        self.assertIn('<title>Home</title>', html)
+        self.assertIn("<title>Philip's Store</title>", html)
         self.assertTrue(html.startswith('\n<!DOCTYPE html>\n'))
         self.assertEqual(response.status_code, 200)
