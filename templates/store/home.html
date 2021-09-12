@@ -1,15 +1,15 @@
 {% extends "./base.html" %}
 {% load static %}
-{% block title %}Home{% endblock %}
+{% block title %}Philip's Store{% endblock %}
 
 {% block content %}
 
 <main>
 
   <section class="py-5 text-center container">
-    <div class="row py-lg-5">
+    <div class="row py-lg-3">
       <div class="col-lg-6 col-md-8 mx-auto">
-        <h1 class="h1 fw-bold">Search, Read, Buy, Review</h1>
+        <h1 class="h1 fw-bold">Search, View, Buy, Review</h1>
         <p class="lead text-muted">You can find info about the collection below—its contents, the creator,
           etc. You can add your own, search for more, buy from others, etc. All the functionalities that you want and many more.</p>
         <p>
@@ -35,7 +35,7 @@
                 <a class="text-dark text-decoration-none" href="{{ product.get_absolute_url }}">{{ product.title }}</a>
               </p>
               <div class="d-flex justify-content-between align-items-center">
-                <small class="text-muted">Price: {{ product.price}}</small>
+                <small class="text-muted">Price: {{product.price}}</small>
               </div>
             </div>
           </div>
