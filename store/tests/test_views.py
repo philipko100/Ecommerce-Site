@@ -16,6 +16,13 @@ class TestViewResponse(TestCase):
         self.data1 = Product.objects.create(category_id=1, title='django test',
                                                 created_by_id=1, slug='django-test', price='20.00',
                                                 image='django')
+    
+    # test allowed url hosts
+    def test_url_allowed_hosts(self):
+        response = self.c.get('/', HTTP_HOST='noaddress.com')
+        self.assertEquals(response.status_code, 400)
+        response = self.c.get('/', HTTP_HOST='yourdomain.com')
+        self.assertEqual(response.status_code, 200)
 
     # test allowed hosts urls
     def test_url_allowed_hosts(self):
