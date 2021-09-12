@@ -1,6 +1,7 @@
 from django.test import TestCase
 from store.models import Category, Product
 from django.contrib.auth.models import User
+from django.urls import reverse
 
 
 class TestCategories(TestCase):
@@ -13,6 +14,13 @@ class TestCategories(TestCase):
         data = self.data1
         self.assertTrue(isinstance(data, Category))
         self.assertEqual(str(data), 'django')
+
+    # test view by category url
+    def test_category_url(self):
+        data = self.data1
+        response = self.client.post(
+            reverse('store:category_list', args=[data.slug]))
+        self.assertEqual(response.status_code, 200)
 
 class TestProductsModel(TestCase):
 
@@ -27,3 +35,17 @@ class TestProductsModel(TestCase):
         data = self.data1
         self.assertTrue(isinstance(data, Product))
         self.assertEqual(str(data), 'django test')
+
+    # test view single product url
+    def test_products_url(self):
+        data = self.data1
+        url = reverse('store:product_detail', args=[data.slug])
+        self.assertEqual(url, '/django-test')
+        response = self.client.post(
+            reverse('store:product_detail', args=[data.slug]))
+        self.assertEqual(response.status_code, 200)
+
+    # test Product Manager which should only return all active products
+    def test_products_custom_manager_basic(self):
+        data = Product.products.all()
+        self.assertEqual(data.count(), 1)
