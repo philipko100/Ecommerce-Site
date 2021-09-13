@@ -5,6 +5,8 @@ from django.urls import reverse
 from django.http import HttpRequest
 from store.models import Category, Product
 from store.views import product_all
+from importlib import import_module
+from django.conf import settings
 
 class TestViewResponse(TestCase):
     
@@ -50,6 +52,8 @@ class TestViewResponse(TestCase):
     # test getting the homepage html
     def test_homepage(self):
         request = HttpRequest()
+        engine = import_module(settings.SESSION_ENGINE)
+        request.session = engine.SessionStore()
         response = product_all(request)
         html = response.content.decode('utf8')
         self.assertIn("<title>Philip's Store</title>", html)
@@ -59,6 +63,8 @@ class TestViewResponse(TestCase):
     # also test getting homepage html with Request Factory
     def test_view_function(self):
         request = self.factory.get('/django-test')
+        engine = import_module(settings.SESSION_ENGINE)
+        request.session = engine.SessionStore()
         response = product_all(request)
         html = response.content.decode('utf8')
         self.assertIn("<title>Philip's Store</title>", html)
