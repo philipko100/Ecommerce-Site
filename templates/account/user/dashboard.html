@@ -10,6 +10,9 @@
       <div><a href="{% url "account:edit_details" %}">Change Details</a></div>
     </div>
     <hr />
+    <p>billing success is dependent on stripe webhooks, meaning it requires you to have a stripe account 
+        and follow the rest of the documentation on README.md (not required for just testing) </p>
+    <hr />
   </div>
   <div class="container" style="max-width: 1000px">
     {% for order in orders %}
@@ -37,6 +40,7 @@
 
         </div>
         <div class="text-end">
+          Billing successful: {{order.billing_status}} | 
           Total paid: <span class="fw-bold">${{ order.total_paid }}</span>
         </div>
       </div>
