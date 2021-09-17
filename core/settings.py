@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-8tm2ki9q)6)75cztun&(94&xoge$$=-=vip#s&b1=t9)hru-1r
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['yourdomain.com', '127.0.0.1']
+ALLOWED_HOSTS = ['yourdomain.com', '127.0.0.1', 'localhost']
 
 
 # Application definition
@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'basket',
     'account',
     'payment',
+    'orders',
 ]
 
 MIDDLEWARE = [
@@ -143,5 +144,12 @@ AUTH_USER_MODEL = 'account.UserBase'
 LOGIN_REDIRECT_URL = '/account/dashboard'
 LOGIN_URL = '/account/login'
 
+# Basket session ID
+BASKET_SESSION_ID = 'basket'
+
 # Email setting
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+STRIPE_PUBLISHABLE_KEY = 'pk_test_51JZtewAxxrgwQLI9ZkIywdyepo3Ml9IH1deRcfCPg2cUizhD8RKnGHoDJOnAXmN34d23wV7eGsfm2ManJC3MNrXO00Hrooaaxz'
+STRIPE_SECRET_KEY = 'sk_test_51JZtewAxxrgwQLI9ZAzq1kbxQbG0s19jfdfjHG3nUq40vrv81QdDh6ut2xF5JPiVdIBr78wl8DgHMzaj0p8fupRD00wLRlEf99'
+STRIPE_ENDPOINT_SECRET = 'whsec_pIpXZmLfoVL8DJENA6PY5I2FDVWN0byV'

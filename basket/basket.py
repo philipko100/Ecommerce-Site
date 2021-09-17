@@ -1,13 +1,14 @@
 from decimal import Decimal
 from store.models import Product
+from django.conf import settings
 
 class Basket():
 
     def __init__(self, request):
         self.session = request.session
-        basket = self.session.get('skey')
-        if 'skey' not in request.session:
-            basket = self.session['skey'] = {}
+        basket = self.session.get(settings.BASKET_SESSION_ID)
+        if settings.BASKET_SESSION_ID not in request.session:
+            basket = self.session[settings.BASKET_SESSION_ID] = {}
         self.basket = basket
 
     # returns iterable of all items in basket
@@ -56,4 +57,9 @@ class Basket():
         product_id = str(product)
         if product_id in self.basket:
             self.basket[product_id]['qty'] = qty
+        self.save()
+
+    # removes basket from session
+    def clear(self):
+        del self.session[settings.BASKET_SESSION_ID]
         self.save()
