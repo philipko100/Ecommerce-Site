@@ -18,5 +18,5 @@ To allow for Stripe integration when testing this web app, you must (on a termin
 3. .\stripe listen --forward-to localhost:8000/payment/webhook/
 
 To access admin:
-http://127.0.0.1:8000/admin
+Go to (with the server running): http://127.0.0.1:8000/admin
 email: a@a.com and password: admin
