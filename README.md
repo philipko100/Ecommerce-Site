@@ -13,6 +13,7 @@ Commands to run this project:
 To run this webapp, git clone this repository. Then go into the folder in a terminal, pip install requirements, and run "python ./manage.py runserver" and your terminal should return after some lines "Starting development server at http://127.0.0.1:8000/" or some other port number. Once you open the port link and create an account, look at the redirect screen or your console where you are running server for an activation link. IMPORTANT: Make sure to open that activation link or your account will not be useable.
 
 To allow for Stripe integration when testing this web app, you must (on a terminal in the repo folder):
+- However, to test fully with Stripe, you will need a Stripe account and a edit the keys and secrets for the Stripe APIs. Don't worry, you can still test checkout and all the other processes, but without the account, you won't be able to test successful purchases. If you do have a stripe account, do the following:  
 1. pip install stripe
 2. .\stripe login
 3. .\stripe listen --forward-to localhost:8000/payment/webhook/
