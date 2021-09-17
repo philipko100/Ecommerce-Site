@@ -1,0 +1,11 @@
+the packages that this repo uses
+check requirements.txt for more
+
+django
+black
+isort
+django-mptt
+pillow
+stripe
+coverage
+six
