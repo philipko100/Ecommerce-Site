@@ -13,7 +13,9 @@
         <p class="lead text-muted">You can find info about the collection below—its contents, the creator,
           etc. You can add your own, search for more, buy from others, etc. All the functionalities that you want and many more.</p>
         <p>
-          <a href="#" class="btn btn-primary my-2">Make an account</a>
+        {% if not user.is_authenticated %}
+          <a href="{% url "account:register" %}" class="btn btn-primary my-2">Make an account</a>
+        {% endif %}
         </p>
       </div>
     </div>
