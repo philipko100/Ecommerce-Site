@@ -1,0 +1,44 @@
+{% extends "../store/base.html" %} {% load static %} {% block title %}Inventory Summary{%endblock %} {% block content %}
+
+<main class="pt-5">
+  <div class="container" style="max-width: 1000px">
+    <div class="col-12">
+      <h1 class="h2">Inventory Dashboard</h1>
+    </div>
+    <div class="col-12 d-flex justify-content-between">
+      <div>Manage your <b>inventory</b>.</div>
+      <a href="{% url "inventory:inventory_add" %}">Add Product</a>
+    </div>
+    <hr />
+  </div>
+  <div class="container" style="max-width: 1000px">
+    {% for product in products %}
+    <div class="row g-3">
+
+      <div class="col-md-7 col-lg-8 p-0">
+
+        <div class="card mb-3 binventory-0">
+          <div class="row g-0">
+            <div class="col-md-2 d-none d-md-block">
+              {% for image in product.product_image.all%}
+              {% if image.is_feature%}
+                <img class="img-fluid" style="width:90px" src="{{ image.image.url }}" alt="{{ image.image.alt_text}}">
+              {% endif %}
+            {% endfor %}
+            </div>
+            <div class="col-md-10">
+              <div class="card-body p-1">
+                <a class="text-decoration-none" href="{{ product.get_absolute_url }}">
+                  <p class="card-text small">{{product.title|title}}</p>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</main>
+
+{% endblock %}
