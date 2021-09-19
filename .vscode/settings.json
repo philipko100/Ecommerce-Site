@@ -1,5 +1,5 @@
 {
-    "editor.formatOnSave": true,
+    // "editor.formatOnSave": true,
     "python.pythonPath": "venv\\Scripts\\python.exe",
     "python.sortImports.args": [
       "--profile=black",
