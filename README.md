@@ -33,3 +33,13 @@ Then, after you create a category of your product, then you can upload your prod
 2. Add Product
 3. Use the Category you created in the form to add your product.
 4. You can upload an image for your product. This product will automatically be "featured". 
+
+Testing:
+
+Testing in this webapp has been thoroughly done with python unit tests with django test and integration tests with pytest
+
+To run tests, you can simply use "py manage.py test"
+
+To run tests with coverage, you can use "coverage run --omit='#/venv/*' manage.py test" to run coverage on the relevant files of the webapp
+
+To get coverage information after you run coverage, then you can view by "coverage report"
