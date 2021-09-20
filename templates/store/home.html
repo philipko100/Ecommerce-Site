@@ -42,7 +42,12 @@
                 <a class="text-dark text-decoration-none" href="{{ product.get_absolute_url }}">{{ product.title }}</a>
               </p>
               <div class="d-flex justify-content-between align-items-center">
+              {%if product.is_on_sale %}
+                <small class="text-muted"><strike>Price: ${{product.regular_price}}</strike></small>
+                <small class="text-muted">Price: ${{product.discount_price}}</small>
+                {% else %}
                 <small class="text-muted">Price: ${{product.regular_price}}</small>
+              {% endif %}
               </div>
             </div>
           </div>

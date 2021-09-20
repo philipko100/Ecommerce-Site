@@ -31,10 +31,11 @@ class ProductAddForm(forms.ModelForm):
         max_digits=5,
         decimal_places=2,
     )
+    is_on_sale = forms.BooleanField(label='Is this Product on sale?', initial=False, required=False)
     featured_image = forms.ImageField(label='Provide Product Image',)
     class Meta:
         model = Product
-        fields = ('category', 'description', 'regular_price', 'discount_price',)
+        fields = ('category', 'description', 'regular_price', 'discount_price', 'is_on_sale')
     
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)

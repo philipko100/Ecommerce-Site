@@ -14,9 +14,9 @@ def inventory_summary(request):
     products = []
     for inventory in inventoryItems:
         products.append(inventory.product)
-    return render(request, 'inventory/summary.html', {'products' : products})     # create the templates
+    return render(request, 'inventory/summary.html', {'products' : products})
 
-# assumes that product type and product specifications exist and is taken care of
+# assumes that category exist and is taken care of
 def inventory_add(request):
     if request.method == 'POST':
         product_add_form = ProductAddForm(request.POST, request.FILES)
@@ -31,6 +31,7 @@ def inventory_add(request):
                 slug=slug,
                 regular_price=product_add_form.cleaned_data['regular_price'],
                 discount_price=product_add_form.cleaned_data['discount_price'],
+                is_on_sale=product_add_form.cleaned_data['is_on_sale'],
                 is_active=True,
             )
             user_id = request.user.id
@@ -50,7 +51,7 @@ def inventory_add(request):
         product_add_form = ProductAddForm()
     return render(request, 'inventory/add_product_inventory.html', {'form': product_add_form})
 
-# assumes that product type and product specifications exist and is taken care of
+# assumes that category exist and is taken care of
 def inventory_edit(request, id):
     product = get_object_or_404(Product, pk=id)
     if request.method == 'POST':
@@ -62,6 +63,7 @@ def inventory_edit(request, id):
                 description=product_add_form.cleaned_data['description'],
                 regular_price=product_add_form.cleaned_data['regular_price'],
                 discount_price=product_add_form.cleaned_data['discount_price'],
+                is_on_sale=product_add_form.cleaned_data['is_on_sale'],
             )
             ProductImage.objects.filter(product=product).filter(is_feature=True).update(is_feature=False)
             image = ProductImage.objects.create(
@@ -84,7 +86,6 @@ def inventory_delete(request, id):
     return redirect("inventory:inventory_summary")
 
 
-# assumes that product type and product specifications exist and is taken care of
 def category_add(request):
     if request.method == 'POST':
         category_add_form = CategoryAddForm(request.POST)

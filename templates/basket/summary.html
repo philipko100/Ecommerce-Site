@@ -25,7 +25,6 @@
           <div class="col-md-5 col-lg-4 order-md-last p-0 order-3">
             <div class="d-grid gap-2 ">
               <a role="button" href="{% url "payment:basket" %}" class="btn btn-success fw-bold" type="button">Checkout</a>
-              <button class="btn btn-light" type="button">Save for later</button>
             </div>
           </div>
       </div>
@@ -49,7 +48,14 @@
           <div class="col border-bottom">
             <div class="row p-3">
               <div class="col-6">Price</div>
-              <div class="col-6 text-end"><span class="h6 fw-bold">${{ product.regular_price }}</span></div>
+              <div class="col-6 text-end">
+                {%if product.is_on_sale %}
+                <span class="h6 fw-bold"><strike>${{ product.regular_price }}</strike></span>
+                <span class="h6 fw-bold">${{ product.discount_price }}</span>
+                {% else %}
+                <span class="h6 fw-bold">${{ product.regular_price }}</span>
+              {% endif %}
+                </div>
             </div>
           </div>
           <div class="col">

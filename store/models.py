@@ -107,6 +107,11 @@ class Product(models.Model):
         help_text=_("Change product visibility"),
         default=True,
     )
+    is_on_sale = models.BooleanField(
+        verbose_name=_("Discount State"),
+        help_text=_("Change discount state"),
+        default=False,
+    )
     created_at = models.DateTimeField(_("Created at"), auto_now_add=True, editable=False)
     updated_at = models.DateTimeField(_("Updated at"), auto_now=True)
 

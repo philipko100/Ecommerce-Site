@@ -44,7 +44,10 @@ class Basket():
         if product_id in self.basket:
             self.basket[product_id]['qty'] += qty
         else:
-            self.basket[product_id] = {'price': str(product.regular_price), 'qty': qty}
+            if product.is_on_sale:
+                self.basket[product_id] = {'price': str(product.discount_price), 'qty': qty}
+            else:
+                self.basket[product_id] = {'price': str(product.regular_price), 'qty': qty}
         self.save()
         
     # deletes the product in the basket
