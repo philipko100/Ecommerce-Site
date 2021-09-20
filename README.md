@@ -22,3 +22,14 @@ To access admin:
 1. Go to (with the server running): http://127.0.0.1:8000/admin
 2. email: a@a.com and password: admin <br>
 If that doesn't work, you can always create your own superuser with "py manage.py createsuperuser"
+<br>
+In order to get started, you need to create a category: <br>
+1. login
+2. Go to Sell
+3. Create Category
+<br>
+Then, after you create a category of your product, then you can upload your product to sell: <br>
+1. Go to Sell
+2. Add Product
+3. Use the Category you created in the form to add your product.
+4. You can upload an image for your product. This product will automatically be "featured". 
