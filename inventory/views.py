@@ -5,7 +5,7 @@ from django.http import JsonResponse
 from django.shortcuts import get_object_or_404, redirect, render
 from store.models import Category, Product, ProductImage, ProductType
 
-from inventory.forms import ProductAddForm
+from inventory.forms import CategoryAddForm, ProductAddForm
 from inventory.models import InventoryItem
 
 
@@ -18,18 +18,13 @@ def inventory_summary(request):
 
 # assumes that product type and product specifications exist and is taken care of
 def inventory_add(request):
-    print("in inventory add")
     if request.method == 'POST':
-        print("is post")
         product_add_form = ProductAddForm(request.POST, request.FILES)
         if product_add_form.is_valid():
-            print("is valid")
-            # product = product_add_form.save(commit=False)
             titleString = str(product_add_form.cleaned_data['title'])
             titleString = titleString.lower()
             slug = titleString.replace(" ", "-")
             product = Product.objects.create(
-                product_type=product_add_form.cleaned_data['product_type'],
                 category=product_add_form.cleaned_data['category'],
                 title=product_add_form.cleaned_data['title'],
                 description=product_add_form.cleaned_data['description'],
@@ -52,22 +47,16 @@ def inventory_add(request):
             image.save()
             return render(request, 'inventory/product_added.html')
     else:
-        print("not post")
         product_add_form = ProductAddForm()
     return render(request, 'inventory/add_product_inventory.html', {'form': product_add_form})
 
 # assumes that product type and product specifications exist and is taken care of
 def inventory_edit(request, id):
-    print("in inventory edit")
     product = get_object_or_404(Product, pk=id)
     if request.method == 'POST':
-        print("is post")
         product_add_form = ProductAddForm(request.POST, request.FILES)
         if product_add_form.is_valid():
-            print("is valid")
-            # product = product_add_form.save(commit=False)
             Product.objects.filter(pk=id).update(
-                product_type=product_add_form.cleaned_data['product_type'],
                 category=product_add_form.cleaned_data['category'],
                 title=product_add_form.cleaned_data['title'],
                 description=product_add_form.cleaned_data['description'],
@@ -83,7 +72,6 @@ def inventory_edit(request, id):
             image.save()
             return render(request, 'inventory/product_added.html')
     else:
-        print("not post")
         product_add_form = ProductAddForm(instance=product)
     return render(request, 'inventory/add_product_inventory.html', {'form': product_add_form})
 
@@ -94,3 +82,22 @@ def inventory_inactive(request, id):
 def inventory_delete(request, id):
     Product.objects.filter(pk=id).delete()
     return redirect("inventory:inventory_summary")
+
+
+# assumes that product type and product specifications exist and is taken care of
+def category_add(request):
+    if request.method == 'POST':
+        category_add_form = CategoryAddForm(request.POST)
+        if category_add_form.is_valid():
+            nameString = str(category_add_form.cleaned_data['name'])
+            nameString = nameString.lower()
+            slug = nameString.replace(" ", "-")
+            Category.objects.create(
+                name=category_add_form.cleaned_data['name'],
+                slug=slug,
+                is_active=True,
+            )
+            return render(request, 'inventory/product_added.html')
+    else:
+        category_add_form = CategoryAddForm()
+    return render(request, 'inventory/add_product_category.html', {'form': category_add_form})

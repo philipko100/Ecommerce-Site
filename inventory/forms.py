@@ -2,10 +2,8 @@ from django import forms
 from store.models import Category, Product, ProductType
 
 
-# no product specification for now, needs existing product type and category, and one product image (which will be featured)
+# needs existing  category, and one product image (which will be featured)
 class ProductAddForm(forms.ModelForm):
-    product_type = forms.ModelChoiceField(label='Enter Product Type', help_text="Required", queryset=ProductType.objects.all())
-
     category = forms.ModelChoiceField(label='Enter Product Category', help_text="Required", queryset=Category.objects.all())
 
     title = forms.CharField(label='Enter Product Title', help_text="Required", max_length=255)
@@ -36,7 +34,7 @@ class ProductAddForm(forms.ModelForm):
     featured_image = forms.ImageField(label='Provide Product Image',)
     class Meta:
         model = Product
-        fields = ('product_type', 'category', 'description', 'regular_price', 'discount_price',)
+        fields = ('category', 'description', 'regular_price', 'discount_price',)
     
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -44,3 +42,14 @@ class ProductAddForm(forms.ModelForm):
             {'class': 'form-control mb-3', 'placeholder': 'title'})
         self.fields['description'].widget.attrs.update(
             {'class': 'form-control mb-3', 'placeholder': 'description'})
+
+class CategoryAddForm(forms.ModelForm):
+    name = forms.CharField(label='Enter Category Name', help_text="Required", max_length=255)
+    class Meta:
+        model = Product
+        fields = ('name',)
+    
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['name'].widget.attrs.update(
+            {'class': 'form-control mb-3', 'placeholder': 'name'})

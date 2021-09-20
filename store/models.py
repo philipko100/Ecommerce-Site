@@ -72,7 +72,6 @@ class Product(models.Model):
     The Product table contining all product items.
     """
 
-    product_type = models.ForeignKey(ProductType, on_delete=models.RESTRICT)
     category = models.ForeignKey(Category, on_delete=models.RESTRICT)
     title = models.CharField(
         verbose_name=_("title"),
