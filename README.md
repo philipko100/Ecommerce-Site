@@ -36,7 +36,7 @@ If that doesn't work, you can always create your own superuser with "py manage.p
 
 <b>Testing:</b>
 
-Testing in this webapp has been thoroughly done with python unit tests with django test and integration tests with pytest
+Testing in this webapp has been thoroughly done with python unittests with django test and pytest
 
 To run tests, you can simply use "py manage.py test"
 
