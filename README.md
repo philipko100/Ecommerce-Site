@@ -21,3 +21,4 @@ To allow for Stripe integration when testing this web app, you must (on a termin
 To access admin:
 1. Go to (with the server running): http://127.0.0.1:8000/admin
 2. email: a@a.com and password: admin
+If that doesn't work, you can always create your own superuser with "py manage.py createsuperuser"
