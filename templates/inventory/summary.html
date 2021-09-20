@@ -27,10 +27,16 @@
             {% endfor %}
             </div>
             <div class="col-md-10">
-              <div class="card-body p-1">
+              <div class="card-body ">
                 <a class="text-decoration-none" href="{{ product.get_absolute_url }}">
-                  <p class="card-text small">{{product.title|title}}</p>
+                  <p class="card-text large">{{product.title|title}}</p>
                 </a>
+              </div>
+              <div class="col-md-5 col-lg-4 order-md-last p-0 order-3">
+                <div class="d-grid gap-2 ">
+                  <a class="btn btn-warning" href="{% url 'inventory:inventory_edit' product.id %}" >Edit Product</a>
+                  <button class="btn btn-light" type="button">Leave a review</button>
+                </div>
               </div>
             </div>
           </div>

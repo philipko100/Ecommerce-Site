@@ -21,9 +21,9 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-12 col-lg-7  mx-auto">
-                             <form class="account-form p-4 rounded col-lg-10 mx-auto" enctype="multipart/form-data" action="." method="post">
+                             <form name="product_form" class="account-form p-4 rounded col-lg-10 mx-auto" enctype="multipart/form-data" action="." method="post">
                                 {% csrf_token %}
-                                <h3 class="mb-2 font-weight-bold">Add a Product to Sell</h3>
+                                <h3 class="mb-2 font-weight-bold">Add/Edit a Product to Sell</h3>
 
                                 {% if form.errors %}
                                 <p>Please correct the following errors:</p>
@@ -57,6 +57,7 @@
                                 <label>{{ form.featured_image.label}}<span class="text-muted small">
                                         (Required)</span></label>
                                 {{ form.featured_image }}
+                                {% comment %} <input type="hidden" name="slug" value="{{slug}}"> {% endcomment %}
                                 <button class="btn btn-primary btn-block py-2 mb-4 mt-5 fw500 w-100" type="submit">Add Product</button>
                             </form>
                         </div>
@@ -66,4 +67,14 @@
         </div>
     </div>
 </div>
+
+<script> 
+function submitForm() {
+   var form = document.getElementsByName('product_form')[0];
+   form.submit(); // Submit the form
+   form.reset();  // Reset all form data
+   return false; // Prevent page refresh
+}
+</script>
+
 {% endblock %}

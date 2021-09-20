@@ -39,7 +39,10 @@
                                 {% for image in product.product_image.all %}
                                     {% if image.is_feature %}
                                         <img class="img-fluid mx-auto d-block" width="400px" alt="Responsive image" src="{{ image.image.url }}" alt="{{image.alt_text}}">
-                                    {% else %}
+                                    {% endif %}
+                                {% endfor %}
+                                {% for image in product.product_image.all %}
+                                    {% if not image.is_feature %}
                                         <img class="img-fluid mx-auto d-block-inline" width="100px" alt="Responsive image" src="{{ image.image.url }}" alt="{{image.image.alt_text}}">
                                     {% endif %}
                                 {% endfor %}

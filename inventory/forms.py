@@ -37,14 +37,10 @@ class ProductAddForm(forms.ModelForm):
     class Meta:
         model = Product
         fields = ('product_type', 'category', 'description', 'regular_price', 'discount_price',)
-
-    def get_title(self):
-        return self.title
-    def get_description(self):
-        return self.description
-    def get_slug(self):
-        return self.slug
-    def get_regular_price(self):
-        return self.regular_price
-    def get_discount_price(self):
-        return self.discount_price
+    
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['title'].widget.attrs.update(
+            {'class': 'form-control mb-3', 'placeholder': 'title'})
+        self.fields['description'].widget.attrs.update(
+            {'class': 'form-control mb-3', 'placeholder': 'description'})

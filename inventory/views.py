@@ -1,3 +1,5 @@
+from random import random
+
 from account.models import UserBase
 from django.http import JsonResponse
 from django.shortcuts import get_object_or_404, render
@@ -53,3 +55,35 @@ def inventory_add(request):
         print("not post")
         product_add_form = ProductAddForm()
     return render(request, 'inventory/add_product_inventory.html', {'form': product_add_form})
+
+# assumes that product type and product specifications exist and is taken care of
+def inventory_edit(request, id):
+    print("in inventory edit")
+    product = get_object_or_404(Product, pk=id)
+    if request.method == 'POST':
+        print("is post")
+        product_add_form = ProductAddForm(request.POST, request.FILES)
+        if product_add_form.is_valid():
+            print("is valid")
+            # product = product_add_form.save(commit=False)
+            Product.objects.filter(pk=id).update(
+                product_type=product_add_form.cleaned_data['product_type'],
+                category=product_add_form.cleaned_data['category'],
+                title=product_add_form.cleaned_data['title'],
+                description=product_add_form.cleaned_data['description'],
+                regular_price=product_add_form.cleaned_data['regular_price'],
+                discount_price=product_add_form.cleaned_data['discount_price'],
+            )
+            ProductImage.objects.filter(product=product).filter(is_feature=True).update(is_feature=False)
+            image = ProductImage.objects.create(
+                product=product,
+                image=product_add_form.cleaned_data['featured_image'],
+                is_feature=True,
+            )
+            image.save()
+            return render(request, 'inventory/product_added.html')
+    else:
+        print("not post")
+        product_add_form = ProductAddForm(instance=product)
+    return render(request, 'inventory/add_product_inventory.html', {'form': product_add_form})
+
