@@ -13,11 +13,19 @@
   </div>
   <div class="container" style="max-width: 1000px">
     {% for product in products %}
+    {% if product.is_active %}
     <div class="row g-3">
+
+      <div class="col-md-5 col-lg-4 order-md-last p-0 order-3">
+        <div class="d-grid gap-2 ">
+          <a class="btn btn-warning" href="{% url 'inventory:inventory_edit' product.id %}" >Edit Product</a>
+          <a class="btn btn-danger" href="{% url 'inventory:inventory_inactive' product.id %}" >Delete Product</a>
+        </div>
+      </div>
 
       <div class="col-md-7 col-lg-8 p-0">
 
-        <div class="card mb-3 binventory-0">
+        <div class="card mb-3 border-0">
           <div class="row g-0">
             <div class="col-md-2 d-none d-md-block">
               {% for image in product.product_image.all%}
@@ -31,18 +39,15 @@
                 <a class="text-decoration-none" href="{{ product.get_absolute_url }}">
                   <p class="card-text large">{{product.title|title}}</p>
                 </a>
-              </div>
-              <div class="col-md-5 col-lg-4 order-md-last p-0 order-3">
-                <div class="d-grid gap-2 ">
-                  <a class="btn btn-warning" href="{% url 'inventory:inventory_edit' product.id %}" >Edit Product</a>
-                  <button class="btn btn-light" type="button">Leave a review</button>
-                </div>
+                
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
+    <hr />
+    {% endif %}
     {% endfor %}
   </div>
 </main>

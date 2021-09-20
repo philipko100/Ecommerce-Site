@@ -2,7 +2,7 @@ from random import random
 
 from account.models import UserBase
 from django.http import JsonResponse
-from django.shortcuts import get_object_or_404, render
+from django.shortcuts import get_object_or_404, redirect, render
 from store.models import Category, Product, ProductImage, ProductType
 
 from inventory.forms import ProductAddForm
@@ -87,3 +87,10 @@ def inventory_edit(request, id):
         product_add_form = ProductAddForm(instance=product)
     return render(request, 'inventory/add_product_inventory.html', {'form': product_add_form})
 
+def inventory_inactive(request, id):
+    Product.objects.filter(pk=id).update(is_active = False)
+    return redirect("inventory:inventory_summary")
+
+def inventory_delete(request, id):
+    Product.objects.filter(pk=id).delete()
+    return redirect("inventory:inventory_summary")
