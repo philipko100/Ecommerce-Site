@@ -36,7 +36,7 @@ If that doesn't work, you can always create your own superuser with "py manage.p
 
 <b>Testing:</b>
 
-Testing in this webapp has been thoroughly done with python unittests with django test and pytest, giving a coverage of 94%. This can however be increased to near 100%. I am still learning how to use pytest on specific edge cases like stripe webhook functions and account activation url functions.
+Testing in this webapp has been thoroughly done with python unittests with django test and pytest, giving a coverage of 95% with 84 tests. This can however be increased to near 100%. I am still learning how to use pytest on specific edge cases like stripe webhook functions and account activation url functions.
 
 To run tests, you can simply use "pytest"
 
