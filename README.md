@@ -38,8 +38,9 @@ If that doesn't work, you can always create your own superuser with "py manage.p
 
 Testing in this webapp has been thoroughly done with python unittests with django test and pytest
 
-To run tests, you can simply use "py manage.py test"
+To run tests, you can simply use "pytest", and if that doesn't work, you can simply "py manage.py test"
 
-To run tests with coverage, you can use "coverage run --omit='#/venv/*' manage.py test" to run coverage on the relevant files of the webapp
+To run tests with coverge, you can simply "coverage run -m pytest"
+- If that does not work, to run tests with coverage, you can use "coverage run --omit='#/venv/*' manage.py test" to run coverage on the relevant files of the webapp
 
 To get coverage information after you run coverage, then you can view by "coverage report"
