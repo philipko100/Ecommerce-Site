@@ -75,8 +75,6 @@ def adminuser_fixture(db, customer_factory):
 @pytest.fixture
 def inventory_fixture(db, inventory_factory):
     inventory = inventory_factory.create()
-    inventory.user = customer_fixture
-    inventory.product = product_fixture
     return inventory
 
 @pytest.fixture
