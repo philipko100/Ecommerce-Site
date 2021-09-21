@@ -1,4 +1,4 @@
-asgiref==3.2.3
+asgiref==3.4.1
 atomicwrites==1.4.0
 attrs==21.2.0
 black==21.9b0
