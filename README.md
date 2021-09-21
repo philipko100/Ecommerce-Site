@@ -4,11 +4,21 @@ Ecommerce site where you can create an account, add items to cart, and purchase 
 
 This is a django project consisting of many django apps.
 
-<b>Commands to run this project:</b>
-1. py -m venv venv
-2. venv\Scripts\activate
-3. pip install -r requirements.txt
-4. py manage.py runserver
+<b>Commands to run this project (on windows):</b>
+1. install python, and pip
+2. Go to the project folder
+3. py -m venv venv
+4. venv\Scripts\activate
+5. pip install -r requirements.txt
+6. py manage.py runserver
+
+<b>Commands to run this project (on mac):</b>
+1. install python, and pip
+2. Go to the project folder
+3. virtualenv venv
+4. source venv/Scripts/activate
+5. pip install -r requirements.txt
+6. python manage.py runserver
 
 To run this webapp, git clone this repository. Then go into the folder in a terminal, pip install requirements, and run "python ./manage.py runserver" and your terminal should return after some lines "Starting development server at http://127.0.0.1:8000/" or some other port number. Once you open the port link and create an account, look at the redirect screen or your console where you are running server for an activation link. <b>IMPORTANT: Make sure to open that activation link or your account will not be useable.</b>
 
