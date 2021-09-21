@@ -1,6 +1,8 @@
 import factory
 from account.models import UserBase
 from faker import Faker
+from inventory.models import InventoryItem
+from orders.models import Order, OrderItem
 from store.models import (
     Category,
     Product,
@@ -59,7 +61,6 @@ class ProductDiscountedFactory(factory.django.DjangoModelFactory):
     is_on_sale = True
 
 
-
 class ProductSpecificationValueFactory(factory.django.DjangoModelFactory):
     class Meta:
         model = ProductSpecificationValue
@@ -80,12 +81,12 @@ class CustomerFactory(factory.django.DjangoModelFactory):
 
     email = "a@a.com"
     user_name = "user1"
-    first_name = "user"
-    phone_number = "07525251252"
-    postcode = "M4S 3H7"
-    address_line_1 = "6445 University Blvd"
-    address_line_2 = "1000 Heavens Rd"
-    town_city = "Toronto"
+    first_name = fake.name()
+    phone_number = fake.phone_number()
+    postcode = fake.postcode()
+    address_line_1 = fake.street_address()
+    address_line_2 = fake.street_address()
+    town_city = fake.city()
     password = "tester"
     is_active = True
     is_staff = False
@@ -98,3 +99,34 @@ class CustomerFactory(factory.django.DjangoModelFactory):
         else:
             return manager.create_user(*args, **kwargs)
 
+
+class InventoryFactory(factory.django.DjangoModelFactory):
+    class Meta:
+        model = InventoryItem
+
+    user = factory.SubFactory(CustomerFactory)
+    product = factory.SubFactory(ProductFactory)
+
+class OrderFactory(factory.django.DjangoModelFactory):
+    class Meta:
+        model = Order
+
+    user = factory.SubFactory(CustomerFactory)
+    full_name = "user1"
+    address1 = fake.street_address()
+    address2 = fake.street_address()
+    city = fake.city()
+    phone = fake.phone_number()
+    post_code = fake.postcode()
+    total_paid = 99
+    order_key = "sf3f23"
+    billing_status = True
+
+class OrderItemFactory(factory.django.DjangoModelFactory):
+    class Meta:
+        model = OrderItem
+
+    order = factory.SubFactory(OrderFactory)
+    product = factory.SubFactory(ProductFactory)
+    price = 9
+    quantity = 11

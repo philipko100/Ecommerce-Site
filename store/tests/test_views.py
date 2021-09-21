@@ -1,12 +1,14 @@
-from django.test import TestCase, Client, RequestFactory
+from importlib import import_module
 from unittest import skip
-from django.contrib.auth.models import User
-from django.urls import reverse
+
+from account.models import UserBase
+from django.conf import settings
 from django.http import HttpRequest
+from django.test import Client, RequestFactory, TestCase
+from django.urls import reverse
 from store.models import Category, Product
 from store.views import product_all
-from importlib import import_module
-from django.conf import settings
+
 
 class TestViewResponse(TestCase):
     
@@ -14,10 +16,9 @@ class TestViewResponse(TestCase):
         self.c = Client()
         self.factory = RequestFactory()
         Category.objects.create(name='django', slug='django')
-        User.objects.create(username='admin')
-        self.data1 = Product.objects.create(category_id=1, title='django test',
-                                                created_by_id=1, slug='django-test', price='20.00',
-                                                image='django')
+        UserBase.objects.create(user_name='admin', email="a@a.com")
+        self.data1 = Product.objects.create(category_id=1, title='django test', description='product description',
+                                                slug='django-test', regular_price='20.00', discount_price='9.99',)
     
     # test allowed url hosts
     def test_url_allowed_hosts(self):

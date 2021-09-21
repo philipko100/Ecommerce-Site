@@ -1,9 +1,13 @@
 import pytest
 from pytest_factoryboy import register
 
+from inventory.models import InventoryItem
 from tests.factories import (
     CategoryFactory,
     CustomerFactory,
+    InventoryFactory,
+    OrderFactory,
+    OrderItemFactory,
     ProductDiscountedFactory,
     ProductFactory,
     ProductSpecificationFactory,
@@ -18,6 +22,9 @@ register(ProductFactory)
 register(ProductDiscountedFactory)
 register(ProductSpecificationValueFactory)
 register(CustomerFactory)
+register(InventoryFactory)
+register(OrderFactory)
+register(OrderItemFactory)
 
 @pytest.fixture
 def product_category_fixture(db, category_factory):
@@ -62,3 +69,18 @@ def customer_fixture(db, customer_factory):
 def adminuser_fixture(db, customer_factory):
     new_customer = customer_factory.create(user_name="admin_user", is_staff=True, is_superuser=True)
     return new_customer
+
+@pytest.fixture
+def inventory_fixture(db, inventory_factory):
+    inventory = inventory_factory.create()
+    return inventory
+
+@pytest.fixture
+def order_fixture(db, order_factory):
+    inventory = order_factory.create()
+    return inventory
+
+@pytest.fixture
+def order_item_fixture(db, order_item_factory):
+    inventory = order_item_factory.create()
+    return inventory

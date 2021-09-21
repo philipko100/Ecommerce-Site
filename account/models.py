@@ -3,12 +3,19 @@ from django.contrib.auth.models import (
     BaseUserManager,
     PermissionsMixin,
 )
+from django.core.exceptions import ValidationError
 from django.core.mail import send_mail
+from django.core.validators import validate_email
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 
 
 class CustomAccountManager(BaseUserManager):
+    def validateEmail(self, email):
+        try:
+            validate_email(email)
+        except ValidationError:
+            raise ValueError(_("You must provide a valid email address"))
 
     def create_superuser(self, email, user_name, password, **other_fields):
         other_fields.setdefault('is_staff', True)
@@ -20,12 +27,23 @@ class CustomAccountManager(BaseUserManager):
         if other_fields.get('is_superuser') is not True:
             raise ValueError(
                 'Superuser must be assigned to is_superuser=True.')
+
+        if email:
+            email = self.normalize_email(email)
+            self.validateEmail(email)
+        else:
+            raise ValueError(_("Superuser Account: You must provide an email address"))
+        
         return self.create_user(email, user_name, password, **other_fields)
     
     def create_user(self, email, user_name, password, **other_fields):
 
-        if not email:
-            raise ValueError(_('You must provide an email address'))
+        if email:
+            email = self.normalize_email(email)
+            self.validateEmail(email)
+        else:
+            raise ValueError(_("Customer Account: You must provide an email address"))
+
         email = self.normalize_email(email)
         user = self.model(email=email, user_name=user_name, **other_fields)
         user.set_password(password)

@@ -1,7 +1,7 @@
+from account.models import UserBase
 from django.test import TestCase
-from store.models import Category, Product
-from django.contrib.auth.models import User
 from django.urls import reverse
+from store.models import Category, Product
 
 
 class TestCategories(TestCase):
@@ -26,10 +26,9 @@ class TestProductsModel(TestCase):
 
     def setUp(self):
         Category.objects.create(name='django', slug='django')
-        User.objects.create(username='admin')
-        self.data1 = Product.objects.create(category_id=1, title='django test',
-                                                created_by_id=1, slug='django-test', price='20.00',
-                                                image='django')
+        UserBase.objects.create(user_name='admin', email="a@a.com")
+        self.data1 = Product.objects.create(category_id=1, title='django test', description="product description",
+                                                slug='django-test', regular_price='20.00', discount_price='8.99',)
     # test __str__ self function of model
     def test_products_model_entry(self):
         data = self.data1
@@ -47,5 +46,5 @@ class TestProductsModel(TestCase):
 
     # test Product Manager which should only return all active products
     def test_products_custom_manager_basic(self):
-        data = Product.products.all()
+        data = Product.objects.all()
         self.assertEqual(data.count(), 1)
