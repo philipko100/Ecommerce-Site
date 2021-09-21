@@ -1,4 +1,8 @@
 import pytest
+from django.urls.base import reverse
+from orders.models import Order
+from orders.views import payment_confirmation
+from store.models import Category, Product
 
 
 def test_order_str(order_fixture):

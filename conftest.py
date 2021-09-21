@@ -5,6 +5,7 @@ from inventory.models import InventoryItem
 from tests.factories import (
     CategoryFactory,
     CustomerFactory,
+    InventoryDiscountFactory,
     InventoryFactory,
     OrderFactory,
     OrderItemFactory,
@@ -25,6 +26,7 @@ register(CustomerFactory)
 register(InventoryFactory)
 register(OrderFactory)
 register(OrderItemFactory)
+register(InventoryDiscountFactory)
 
 @pytest.fixture
 def product_category_fixture(db, category_factory):
@@ -73,6 +75,13 @@ def adminuser_fixture(db, customer_factory):
 @pytest.fixture
 def inventory_fixture(db, inventory_factory):
     inventory = inventory_factory.create()
+    inventory.user = customer_fixture
+    inventory.product = product_fixture
+    return inventory
+
+@pytest.fixture
+def inventory_discount_fixture(db, inventory_discount_factory):
+    inventory = inventory_discount_factory.create()
     return inventory
 
 @pytest.fixture

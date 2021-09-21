@@ -39,6 +39,7 @@ class ProductSpecificationFactory(factory.django.DjangoModelFactory):
 class ProductFactory(factory.django.DjangoModelFactory):
     class Meta:
         model = Product
+        django_get_or_create = ("slug",)
 
     category = factory.SubFactory(CategoryFactory)
     title = "product_title"
@@ -78,6 +79,7 @@ class ProductSpecificationValueFactory(factory.django.DjangoModelFactory):
 class CustomerFactory(factory.django.DjangoModelFactory):
     class Meta:
         model = UserBase
+        django_get_or_create = ("user_name",)
 
     email = "a@a.com"
     user_name = "user1"
@@ -107,9 +109,17 @@ class InventoryFactory(factory.django.DjangoModelFactory):
     user = factory.SubFactory(CustomerFactory)
     product = factory.SubFactory(ProductFactory)
 
+class InventoryDiscountFactory(factory.django.DjangoModelFactory):
+    class Meta:
+        model = InventoryItem
+
+    user = factory.SubFactory(CustomerFactory)
+    product = factory.SubFactory(ProductDiscountedFactory)
+
 class OrderFactory(factory.django.DjangoModelFactory):
     class Meta:
         model = Order
+        django_get_or_create = ("order_key",)
 
     user = factory.SubFactory(CustomerFactory)
     full_name = "user1"
@@ -120,7 +130,7 @@ class OrderFactory(factory.django.DjangoModelFactory):
     post_code = fake.postcode()
     total_paid = 99
     order_key = "sf3f23"
-    billing_status = True
+    billing_status = False
 
 class OrderItemFactory(factory.django.DjangoModelFactory):
     class Meta:

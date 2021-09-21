@@ -35,7 +35,7 @@ class ProductAddForm(forms.ModelForm):
     featured_image = forms.ImageField(label='Provide Product Image',)
     class Meta:
         model = Product
-        fields = ('category', 'description', 'regular_price', 'discount_price', 'is_on_sale')
+        fields = ('category', 'title', 'description', 'regular_price', 'discount_price', 'is_on_sale')
     
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)

@@ -3,7 +3,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=emulateIE7" />
-    <title>Coverage for account\forms.py: 81%</title>
+    <title>Coverage for account\forms.py: 91%</title>
     <link rel="icon" sizes="32x32" href="favicon_32.png">
     <link rel="stylesheet" href="style.css" type="text/css">
     <script type="text/javascript" src="jquery.min.js"></script>
@@ -18,13 +18,13 @@
 <div id="header">
     <div class="content">
         <h1>Coverage for <b>account\forms.py</b> :
-            <span class="pc_cov">81%</span>
+            <span class="pc_cov">91%</span>
         </h1>
         <img id="keyboard_icon" src="keybd_closed.png" alt="Show keyboard shortcuts" />
         <h2 class="stats">
             58 statements &nbsp;
-            <button type="button" class="run shortkey_r button_toggle_run" title="Toggle lines run">47 run</button>
-            <button type="button" class="mis show_mis shortkey_m button_toggle_mis" title="Toggle lines missing">11 missing</button>
+            <button type="button" class="run shortkey_r button_toggle_run" title="Toggle lines run">53 run</button>
+            <button type="button" class="mis show_mis shortkey_m button_toggle_mis" title="Toggle lines missing">5 missing</button>
             <button type="button" class="exc show_exc shortkey_x button_toggle_exc" title="Toggle lines excluded">0 excluded</button>
         </h2>
     </div>
@@ -95,7 +95,7 @@
     <p id="t41" class="run"><span class="n"><a href="#t41">41</a></span><span class="t">    <span class="key">def</span> <span class="nam">clean_email</span><span class="op">(</span><span class="nam">self</span><span class="op">)</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
     <p id="t42" class="run"><span class="n"><a href="#t42">42</a></span><span class="t">        <span class="nam">email</span> <span class="op">=</span> <span class="nam">self</span><span class="op">.</span><span class="nam">cleaned_data</span><span class="op">[</span><span class="str">'email'</span><span class="op">]</span>&nbsp;</span><span class="r"></span></p>
     <p id="t43" class="run"><span class="n"><a href="#t43">43</a></span><span class="t">        <span class="key">if</span> <span class="nam">UserBase</span><span class="op">.</span><span class="nam">objects</span><span class="op">.</span><span class="nam">filter</span><span class="op">(</span><span class="nam">email</span><span class="op">=</span><span class="nam">email</span><span class="op">)</span><span class="op">.</span><span class="nam">exists</span><span class="op">(</span><span class="op">)</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t44" class="mis show_mis"><span class="n"><a href="#t44">44</a></span><span class="t">            <span class="key">raise</span> <span class="nam">forms</span><span class="op">.</span><span class="nam">ValidationError</span><span class="op">(</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t44" class="run"><span class="n"><a href="#t44">44</a></span><span class="t">            <span class="key">raise</span> <span class="nam">forms</span><span class="op">.</span><span class="nam">ValidationError</span><span class="op">(</span>&nbsp;</span><span class="r"></span></p>
     <p id="t45" class="pln"><span class="n"><a href="#t45">45</a></span><span class="t">                <span class="str">'Please use another Email, that is already taken'</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
     <p id="t46" class="run"><span class="n"><a href="#t46">46</a></span><span class="t">        <span class="key">return</span> <span class="nam">email</span>&nbsp;</span><span class="r"></span></p>
     <p id="t47" class="pln"><span class="n"><a href="#t47">47</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
@@ -139,12 +139,12 @@
     <p id="t85" class="pln"><span class="n"><a href="#t85">85</a></span><span class="t">        <span class="nam">attrs</span><span class="op">=</span><span class="op">{</span><span class="str">'class'</span><span class="op">:</span> <span class="str">'form-control mb-3'</span><span class="op">,</span> <span class="str">'placeholder'</span><span class="op">:</span> <span class="str">'Email'</span><span class="op">,</span> <span class="str">'id'</span><span class="op">:</span> <span class="str">'form-email'</span><span class="op">}</span><span class="op">)</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
     <p id="t86" class="pln"><span class="n"><a href="#t86">86</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
     <p id="t87" class="run"><span class="n"><a href="#t87">87</a></span><span class="t">    <span class="key">def</span> <span class="nam">clean_email</span><span class="op">(</span><span class="nam">self</span><span class="op">)</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t88" class="mis show_mis"><span class="n"><a href="#t88">88</a></span><span class="t">        <span class="nam">email</span> <span class="op">=</span> <span class="nam">self</span><span class="op">.</span><span class="nam">cleaned_data</span><span class="op">[</span><span class="str">'email'</span><span class="op">]</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t89" class="mis show_mis"><span class="n"><a href="#t89">89</a></span><span class="t">        <span class="nam">u</span> <span class="op">=</span> <span class="nam">UserBase</span><span class="op">.</span><span class="nam">objects</span><span class="op">.</span><span class="nam">filter</span><span class="op">(</span><span class="nam">email</span><span class="op">=</span><span class="nam">email</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t90" class="mis show_mis"><span class="n"><a href="#t90">90</a></span><span class="t">        <span class="key">if</span> <span class="key">not</span> <span class="nam">u</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t91" class="mis show_mis"><span class="n"><a href="#t91">91</a></span><span class="t">            <span class="key">raise</span> <span class="nam">forms</span><span class="op">.</span><span class="nam">ValidationError</span><span class="op">(</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t88" class="run"><span class="n"><a href="#t88">88</a></span><span class="t">        <span class="nam">email</span> <span class="op">=</span> <span class="nam">self</span><span class="op">.</span><span class="nam">cleaned_data</span><span class="op">[</span><span class="str">'email'</span><span class="op">]</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t89" class="run"><span class="n"><a href="#t89">89</a></span><span class="t">        <span class="nam">u</span> <span class="op">=</span> <span class="nam">UserBase</span><span class="op">.</span><span class="nam">objects</span><span class="op">.</span><span class="nam">filter</span><span class="op">(</span><span class="nam">email</span><span class="op">=</span><span class="nam">email</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t90" class="run"><span class="n"><a href="#t90">90</a></span><span class="t">        <span class="key">if</span> <span class="key">not</span> <span class="nam">u</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t91" class="run"><span class="n"><a href="#t91">91</a></span><span class="t">            <span class="key">raise</span> <span class="nam">forms</span><span class="op">.</span><span class="nam">ValidationError</span><span class="op">(</span>&nbsp;</span><span class="r"></span></p>
     <p id="t92" class="pln"><span class="n"><a href="#t92">92</a></span><span class="t">                <span class="str">'Unfortunatley we can not find that email address'</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t93" class="mis show_mis"><span class="n"><a href="#t93">93</a></span><span class="t">        <span class="key">return</span> <span class="nam">email</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t93" class="run"><span class="n"><a href="#t93">93</a></span><span class="t">        <span class="key">return</span> <span class="nam">email</span>&nbsp;</span><span class="r"></span></p>
     <p id="t94" class="pln"><span class="n"><a href="#t94">94</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
     <p id="t95" class="pln"><span class="n"><a href="#t95">95</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
     <p id="t96" class="run"><span class="n"><a href="#t96">96</a></span><span class="t"><span class="key">class</span> <span class="nam">PwdResetConfirmForm</span><span class="op">(</span><span class="nam">SetPasswordForm</span><span class="op">)</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
@@ -159,7 +159,7 @@
     <div class="content">
         <p>
             <a class="nav" href="index.html">&#xab; index</a> &nbsp; &nbsp; <a class="nav" href="https://coverage.readthedocs.io">coverage.py v5.5</a>,
-            created at 2021-09-20 22:35 -0700
+            created at 2021-09-21 15:00 -0700
         </p>
     </div>
 </div>
