@@ -35,7 +35,15 @@ class ProductAddForm(forms.ModelForm):
     featured_image = forms.ImageField(label='Provide Product Image',)
     class Meta:
         model = Product
-        fields = ('category', 'title', 'description', 'regular_price', 'discount_price', 'is_on_sale')
+        fields = ('category', 'title', 'description', 'regular_price', 'discount_price', 'is_on_sale',)
+
+    def clean_title(self):
+        title = self.cleaned_data['title'].lower()
+        slug = title.replace(" ", "-")
+        r = Product.objects.filter(slug=slug)
+        if r.count():
+            raise forms.ValidationError("Title already exists")
+        return title
     
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
