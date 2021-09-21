@@ -20,7 +20,7 @@ To allow for Stripe integration when testing this web app, you must (on a termin
 
 To access admin:
 1. Go to (with the server running): http://127.0.0.1:8000/admin
-2. email: a@a.com and password: admin <br>
+2. email: admin@a.com and password: admin <br>
 If that doesn't work, you can always create your own superuser with "py manage.py createsuperuser"
 
 <b>In order to get started, you need to create a category: </b>
@@ -36,7 +36,7 @@ If that doesn't work, you can always create your own superuser with "py manage.p
 
 <b>Testing:</b>
 
-Testing in this webapp has been thoroughly done with python unittests with django test and pytest, giving a coverage of 94%. This can however be increased to near 100%. I am still learning how to use pytest on specific edge cases like stripe webhook functions and account activation url functions.
+Testing in this webapp has been thoroughly done with python unittests with django test and pytest, giving a coverage of 95% with 84 tests. This can however be increased to near 100%. I am still learning how to use pytest on specific edge cases like stripe webhook functions and account activation url functions.
 
 To run tests, you can simply use "pytest"
 
