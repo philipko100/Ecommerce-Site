@@ -48,8 +48,8 @@ If that doesn't work, you can always create your own superuser with "py manage.p
 
 Testing in this webapp has been thoroughly done with python unittests with django test and pytest, giving a coverage of 95% with 84 tests. This can however be increased to near 100%. I am still learning how to use pytest on specific edge cases like stripe webhook functions and account activation url functions.
 
-To run tests, you can simply use "pytest"
+To run tests, you can simply use "pytest", (or for mac: "python3 -m pytest")
 
-To run tests with coverge, you can simply "coverage run -m pytest"
+To run tests with coverge, you can simply "coverage run -m pytest", (or for mac: "python3 -m coverage run -m pytest")
 
-To get coverage information after you run coverage, then you can view by "coverage report"
+To get coverage information after you run coverage, then you can view by "coverage report", (or for mac: "python3 -m coverage report")
